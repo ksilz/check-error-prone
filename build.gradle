@@ -8,7 +8,7 @@ plugins {
 }
 
 group = 'com.betterprojectsfaster.test.errorprone'
-version = '0.0.1-SNAPSHOT'
+version = '1.0'
 
 sourceCompatibility = '11'
 
@@ -22,37 +22,6 @@ repositories {
     mavenCentral()
 }
 
-// additions
-targetCompatibility = '11'
-assert System.properties["java.specification.version"] == "11"
-
-defaultTasks "bootRun"
-
-springBoot {
-    mainClassName = "com.betterprojectsfaster.test.errorprone.lombokErrorProne.LombokErrorProneApplication"
-}
-
-tasks.withType(JavaCompile) {
-    options.errorprone {
-        disableWarningsInGeneratedCode = true
-        allDisabledChecksAsWarnings = true
-
-        // Comment out this line and un-comment one of the lines below to reproduce errors
-        excludedPaths = ".*/issues/.*"
-
-        // doesn't reproduce the error - ignore for now
-        // #1478: UnnecessaryDefaultInEnumSwitch: NPE in SuggestedFixes.compilesWithFix (SuggestedFixes.java:1019)
-        //  excludedPaths = ".*/issues/almostjavadoc/.*"
-
-        // https://github.com/google/error-prone/issues/1479
-        // MultiVariableDeclaration: IllegalArgumentException "Start [449] should not be after end [-1]" (Preconditions.java:300) in Lombok class
-        // excludedPaths = ".*/issues/(almostjavadoc|unnecessarydefaultinenumswitch)/.*"
-
-    }
-    options.errorprone.disable("AndroidJdkLibsChecker", "Java7ApiChecker")
-}
-
-
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -63,3 +32,37 @@ dependencies {
     errorprone 'com.google.errorprone:error_prone_core:2.3.4'
 
 }
+
+// additions from here on out
+targetCompatibility = '11'
+assert System.properties["java.specification.version"] == "11"
+
+defaultTasks "bootRun"
+
+springBoot {
+    mainClassName = "com.betterprojectsfaster.test.errorprone.lombokErrorProne.LombokErrorProneApplication"
+}
+
+// addition
+tasks.withType(JavaCompile) {
+    options.errorprone {
+        disableWarningsInGeneratedCode = true
+        allDisabledChecksAsWarnings = true
+
+        // COMMENT OUT THIS LINE AND UN-COMMENT ONE OF THE "excludedPaths" LINES BELOW TO REPRODUCE ERRORS
+        // excludedPaths = ".*/issues/.*"
+
+        // DOESN'T REPRODUCE THE ERROR - IGNORE FOR NOW
+        // https://github.com/google/error-prone/issues/1478
+        // UnnecessaryDefaultInEnumSwitch: NPE in SuggestedFixes.compilesWithFix (SuggestedFixes.java:1019)
+        //  excludedPaths = ".*/issues/almostjavadoc/.*"
+
+        // https://github.com/google/error-prone/issues/1479
+        // MultiVariableDeclaration: IllegalArgumentException "Start [449] should not be after end [-1]" (Preconditions.java:300) in Lombok class
+        excludedPaths = ".*/issues/(almostjavadoc|unnecessarydefaultinenumswitch)/.*"
+
+    }
+    options.errorprone.disable("AndroidJdkLibsChecker", "Java7ApiChecker")
+}
+
+
