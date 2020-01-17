@@ -17,4 +17,4 @@ Currently, this repository recreates these issues:
 - [#1430](https://github.com/google/error-prone/issues/1430):
 IllegalArgumentException from AlmostJavadoc pattern on project using lombok
 - [#1481](https://github.com/google/error-prone/issues/1481): Lombok false positive: MissingOverride for "@EqualsAndHashCode(callSuper = true)" when extending base class
-
+- [#1482](https://github.com/google/error-prone/issues/1482): Lombok false positive: Var for "@EqualsAndHashCode"
