@@ -36,6 +36,10 @@ tasks.withType(JavaCompile) {
     options.errorprone {
         disableWarningsInGeneratedCode = true
         allDisabledChecksAsWarnings = true
+
+        // Comment out this line and un-comment one of the lines below to reproduce errors
+        excludedPaths = ".*/issues/.*"
+        
     }
     options.errorprone.disable("AndroidJdkLibsChecker", "Java7ApiChecker")
 }

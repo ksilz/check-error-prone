@@ -1,4 +1,4 @@
-package com.betterprojectsfaster.test.errorprone.lombokErrorProne.issues;
+package com.betterprojectsfaster.test.errorprone.lombokErrorProne.issues.almostjavadoc;
 
 import java.time.Instant;
 import lombok.EqualsAndHashCode;
@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-// comment out line below for issue
-// @SuppressWarnings({"AlmostJavadoc"})
 @NoArgsConstructor
 @Getter
 @Setter
