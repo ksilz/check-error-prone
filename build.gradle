@@ -123,8 +123,8 @@ tasks.withType(JavaCompile) {
         //excludedPaths = ".*/issues/(multivariabledeclaration|unnecessarydefaultinenumswitch|almostjavadoc|var)/.*"
 
         /*
-            https://github.com/google/error-prone/issues/148
-
+            https://github.com/google/error-prone/issues/1482
+                Lombok false positive: Var for "@EqualsAndHashCode"
         */
         //excludedPaths = ".*/issues/(multivariabledeclaration|unnecessarydefaultinenumswitch|almostjavadoc|missingoverride)/.*"
 
