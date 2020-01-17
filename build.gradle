@@ -44,6 +44,10 @@ tasks.withType(JavaCompile) {
         // #1478: UnnecessaryDefaultInEnumSwitch: NPE in SuggestedFixes.compilesWithFix (SuggestedFixes.java:1019)
         //  excludedPaths = ".*/issues/almostjavadoc/.*"
 
+        // https://github.com/google/error-prone/issues/1479
+        // MultiVariableDeclaration: IllegalArgumentException "Start [449] should not be after end [-1]" (Preconditions.java:300) in Lombok class
+        // excludedPaths = ".*/issues/(almostjavadoc|unnecessarydefaultinenumswitch)/.*"
+
     }
     options.errorprone.disable("AndroidJdkLibsChecker", "Java7ApiChecker")
 }

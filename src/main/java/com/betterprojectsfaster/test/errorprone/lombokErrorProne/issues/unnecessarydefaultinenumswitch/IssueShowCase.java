@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @ToString
 @Service
-public class ProcessorImpl implements IProcessor {
+public class IssueShowCase implements IProcessor {
 
   @Override
   @Nullable
