@@ -107,20 +107,26 @@ tasks.withType(JavaCompile) {
                 MultiVariableDeclaration: IllegalArgumentException
                 "Start [449] should not be after end [-1]" (Preconditions.java:300) in Lombok class
         */
-        //excludedPaths = ".*/issues/(almostjavadoc|unnecessarydefaultinenumswitch)/.*"
+        //excludedPaths = ".*/issues/(almostjavadoc|unnecessarydefaultinenumswitch|missingoverride|var)/.*"
 
         /*
             https://github.com/google/error-prone/issues/1430
                 IllegalArgumentException from AlmostJavadoc pattern on project using lombok
         */
-        //excludedPaths = ".*/issues/(multivariabledeclaration|unnecessarydefaultinenumswitch|missingoverride)/.*"
+        //excludedPaths = ".*/issues/(multivariabledeclaration|unnecessarydefaultinenumswitch|missingoverride|var)/.*"
 
         /*
             https://github.com/google/error-prone/issues/1481
                 Lombok false positive: MissingOverride for "@EqualsAndHashCode(callSuper = true)"
                 when extending base class
         */
-        //excludedPaths = ".*/issues/(multivariabledeclaration|unnecessarydefaultinenumswitch|almostjavadoc)/.*"
+        //excludedPaths = ".*/issues/(multivariabledeclaration|unnecessarydefaultinenumswitch|almostjavadoc|var)/.*"
+
+        /*
+            https://github.com/google/error-prone/issues/148
+
+        */
+        //excludedPaths = ".*/issues/(multivariabledeclaration|unnecessarydefaultinenumswitch|almostjavadoc|missingoverride)/.*"
 
         /*
             DOESN'T REPRODUCE THE ERROR - IGNORE FOR NOW!
