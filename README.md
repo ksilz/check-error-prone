@@ -1,3 +1,4 @@
+### How to use this repository
 Validates various issues for [Error Prone](https://errorprone.info). Here's how to run it:
 - Make sure that you have Java 11 installed.
 - Clone this repository.
@@ -10,5 +11,6 @@ Validates various issues for [Error Prone](https://errorprone.info). Here's how 
 - Run `gradlew.bat` (Windows) or `./gradlew` (Mac, Linux) again.
 - You'll get an error.
 
+### Which issues are included?
 Currently, this repository recreates these issues:
 - [#1479](https://github.com/google/error-prone/issues/1479): Lombok - MultiVariableDeclaration: IllegalArgumentException "Start [449] should not be after end [-1]" (Preconditions.java:300)
