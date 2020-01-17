@@ -38,7 +38,7 @@ tasks.withType(JavaCompile) {
         allDisabledChecksAsWarnings = true
 
         // Comment out this line and un-comment one of the lines below to reproduce errors
-        // excludedPaths = ".*/issues/.*"
+        excludedPaths = ".*/issues/.*"
 
         // doesn't reproduce the error - ignore for now
         // #1478: UnnecessaryDefaultInEnumSwitch: NPE in SuggestedFixes.compilesWithFix (SuggestedFixes.java:1019)
