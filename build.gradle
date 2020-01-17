@@ -1,3 +1,6 @@
+import java.text.DecimalFormat
+import java.text.SimpleDateFormat
+
 plugins {
     id 'org.springframework.boot' version '2.1.12.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
@@ -44,7 +47,51 @@ springBoot {
 }
 
 // addition
+
+ext {
+    startOfBuild = System.currentTimeMillis()
+    durationFormatter = new DecimalFormat("###,##0.0")
+    startOfTask = 0l
+    endOfTask = 0l
+}
+
+gradle.taskGraph.beforeTask {
+    Task task ->
+        startOfTask = System.currentTimeMillis()
+}
+
+class BA extends BuildAdapter {
+    final SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss", Locale.US)
+
+    void buildFinished(BuildResult result) {
+        final String message = formatter.format(new Date())
+        println " "
+        println " **************************"
+        println " *  Finished at " + message + "  *"
+        println " **************************"
+    }
+}
+
+gradle.addListener(new BA())
+
+gradle.taskGraph.afterTask {
+    Task task ->
+        final float duration = (System.currentTimeMillis() - startOfTask) / 1024
+        final message = durationFormatter.format(duration)
+        println "  > " + message + "s"
+}
+
+compileJava.doFirst {
+    println '  Java vendor:  ' + System.properties['java.vendor']
+    println '  JVM vendor:   ' + System.properties['java.vm.vendor']
+    println '  JVM name:     ' + System.properties['java.vm.name']
+    println '  Java version: ' + System.properties['java.version']
+    println '  JVM version:  ' + System.properties['java.vm.version']
+    println()
+}
+
 tasks.withType(JavaCompile) {
+    options.errorprone.disable("AndroidJdkLibsChecker", "Java7ApiChecker")
     options.errorprone {
         disableWarningsInGeneratedCode = true
         allDisabledChecksAsWarnings = true
@@ -69,10 +116,9 @@ tasks.withType(JavaCompile) {
                 MultiVariableDeclaration: IllegalArgumentException
                 "Start [449] should not be after end [-1]" (Preconditions.java:300) in Lombok class
         */
-        // excludedPaths = ".*/ issues / (almostjavadoc | unnecessarydefaultinenumswitch) /.* "
+        //excludedPaths = ".*/issues/(almostjavadoc|unnecessarydefaultinenumswitch)/.*"
 
     }
-    options.errorprone.disable("AndroidJdkLibsChecker", "Java7ApiChecker")
 }
 
 
