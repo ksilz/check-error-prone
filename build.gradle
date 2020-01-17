@@ -1,0 +1,53 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.12.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
+
+    // additions
+    id 'net.ltgt.errorprone' version "1.1.1"
+}
+
+group = 'com.betterprojectsfaster.test.errorprone'
+version = '0.0.1-SNAPSHOT'
+
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+// additions
+targetCompatibility = '11'
+assert System.properties["java.specification.version"] == "11"
+
+defaultTasks "bootRun"
+
+springBoot {
+    mainClassName = "com.betterprojectsfaster.test.errorprone.lombokErrorProne.LombokErrorProneApplication"
+}
+
+tasks.withType(JavaCompile) {
+    options.errorprone {
+        disableWarningsInGeneratedCode = true
+        allDisabledChecksAsWarnings = true
+    }
+    options.errorprone.disable("AndroidJdkLibsChecker", "Java7ApiChecker")
+}
+
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // additions
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    errorprone 'com.google.errorprone:error_prone_core:2.3.4'
+
+}
