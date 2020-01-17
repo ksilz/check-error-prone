@@ -1,4 +1,4 @@
-package com.betterprojectsfaster.test.errorprone.lombokErrorProne.issues.almostjavadoc;
+package com.betterprojectsfaster.test.errorprone.lombokErrorProne.issues.missingoverride;
 
 import java.time.Instant;
 import lombok.EqualsAndHashCode;
@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+@SuppressWarnings({"AlmostJavadoc", "MultiVariableDeclaration", "Var"})
 @NoArgsConstructor
 @Getter
 @Setter
