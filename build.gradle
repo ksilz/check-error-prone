@@ -110,6 +110,12 @@ tasks.withType(JavaCompile) {
         //excludedPaths = ".*/issues/(almostjavadoc|unnecessarydefaultinenumswitch)/.*"
 
         /*
+            https://github.com/google/error-prone/issues/1430
+                IllegalArgumentException from AlmostJavadoc pattern on project using lombok
+        */
+        //excludedPaths = ".*/issues/(multivariabledeclaration|unnecessarydefaultinenumswitch)/.*"
+
+        /*
             DOESN'T REPRODUCE THE ERROR - IGNORE FOR NOW!
 
             https://github.com/google/error-prone/issues/1478
